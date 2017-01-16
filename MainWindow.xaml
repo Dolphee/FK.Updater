@@ -1,0 +1,105 @@
+﻿<Window x:Class="FKUpdater.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FKUpdater"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        Height="365" 
+        Width="450" 
+        Background="#2d2d30" 
+        ResizeMode="NoResize" 
+        WindowStyle="None"
+        Title="{Binding UserPage.Title}">
+
+    <Window.Resources>
+        <ResourceDictionary>
+            <local:VisabilityConverter x:Key="VisabilityConverter" />
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Scrollbar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
+    </Window.Resources>
+    <StackPanel>
+        <Grid>
+        <StackPanel Height="45" Width="165" HorizontalAlignment="Left" Margin="0,15,0,0">
+                <Image Source="Assets/Images/Logo.png" Height="15" />
+         </StackPanel>
+        <StackPanel Width="40" Height="40" HorizontalAlignment="Right" Margin="0,-20,5,0" >
+         <Grid Width="40" Height="40" Cursor="Hand" >
+                <TextBlock Text="X" FontSize="12" FontFamily="Arial" Foreground="White" MouseDown="Close" HorizontalAlignment="Center" VerticalAlignment="Center" >
+                    <TextBlock.ToolTip>
+                        <TextBlock Text="Close FindersKeepers"/>
+                    </TextBlock.ToolTip>
+                </TextBlock>    
+            </Grid>
+            </StackPanel>
+        </Grid>
+
+        <StackPanel Height="230">
+            <ContentControl Name="UserControlCurrent" Content="{Binding UserPage.Control, NotifyOnTargetUpdated=True}">
+                <ContentControl.Triggers>
+                    <EventTrigger RoutedEvent="Binding.TargetUpdated">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="UserControlCurrent" AutoReverse="False"  Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:2" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </ContentControl.Triggers>
+
+            </ContentControl>
+        </StackPanel>
+
+        <StackPanel Height="70" Background="#252526" Orientation="Horizontal">
+            <StackPanel x:Name="LeftButton" Margin="20,0,20,0" Width="220" VerticalAlignment="Center" >
+
+                <Border Background="Transparent" Width="80" Height="40" BorderThickness="1" HorizontalAlignment="Left" Cursor="Hand" MouseDown="Close">
+                    <Border.ToolTip>
+                        <TextBlock Text="Quit FindersKeepers updater" />
+                    </Border.ToolTip>
+
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="BorderBrush" Value="Transparent" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="BorderBrush" Value="#3e3e3e" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+
+                    <TextBlock Text="Quit" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+                </Border>
+            </StackPanel>
+            <StackPanel x:Name="RightButton" Margin="20,0,20,0" Width="150" VerticalAlignment="Center" >
+                <Border Visibility="{Binding NextPage, Converter={StaticResource VisabilityConverter}}" Width="80" Height="40" BorderThickness="1" HorizontalAlignment="Right" Cursor="Hand" MouseDown="MoveNext">
+                    <Border.ToolTip>
+                        <TextBlock Text="Continue" />
+                    </Border.ToolTip>
+                    
+                    <Border.Style>
+                        <Style TargetType="{x:Type Border}">
+                            <Setter Property="Background" Value="#155975" />
+                            <Setter Property="BorderBrush" Value="#0b1426" />
+
+                            <Style.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#287a9b" />
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Border.Style>
+                       
+                    <TextBlock Text="Continue" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+
+
+
+                </Border>
+            </StackPanel>
+        </StackPanel>
+    </StackPanel>
+</Window>

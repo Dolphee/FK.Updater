@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="FKUpdater.StartPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FKUpdater"
+      mc:Ignorable="d" 
+      Height="230"
+      Width="450"
+      Background="#2d2d30">
+
+    <StackPanel Margin="25,0,0,0">
+        <TextBlock FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="15" Foreground="#fff">
+                    Select installation folder
+        </TextBlock>
+        <TextBlock FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="11" Foreground="#b3b3b3">
+                    FindersKeepersD3 require approximately 20MB on your harddrive
+        </TextBlock>
+
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+            <Border Height="40" Width="390" Background="#fff" BorderBrush="#666666" BorderThickness="1" CornerRadius="3">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Text="{Binding CurrentDirectory, UpdateSourceTrigger=PropertyChanged}" Style="{x:Null}" BorderThickness="0" x:Name="Path" Foreground="#4b4b4b" Width="325" Height="20" FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="11" Margin="5,5,0,0" />
+
+                    <Border Cursor="Hand" MouseDown="OpenFile" Margin="16,0,0,0" Height="40" Width="42" BorderBrush="Red" BorderThickness="0,0,0,0" CornerRadius="0,3,3,3" >
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Setter Property="Background" Value="#2d2d30"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="#424242" />
+                                    </Trigger>
+                                </Style.Triggers>
+
+                            </Style>
+                        </Border.Style>
+
+                        <Border.ToolTip>
+                            <Label>Browse path</Label>
+                        </Border.ToolTip>
+
+                        <TextBlock TextAlignment="Center" Height="20" FontSize="18" HorizontalAlignment="Center" Foreground="White" Margin="0,-10,0,0">...</TextBlock>
+                    </Border>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+
+        <TextBlock TextWrapping="WrapWithOverflow" Margin="0,20,0,0"  FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Light" FontSize="11" Foreground="#ffffff">
+                    Disclamer
+        </TextBlock>
+
+        <TextBlock TextWrapping="WrapWithOverflow" Margin="0,00,0,0"  FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Light" FontSize="11" Foreground="#868686">
+                    FindersKeepersD3 is against the Terms of Service of Diablo III. No one has been  
+        </TextBlock>
+
+        <TextBlock HorizontalAlignment="Left" Width="400" TextWrapping="WrapWithOverflow" Height="50" Margin="0,0,0,0"  FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Light" FontSize="11" Foreground="#868686">
+                  banned yet and I will not be held responsible if you do. Use at your own risk. By installing FK you're accepting this.
+        </TextBlock>
+
+        <TextBlock Width="400" HorizontalAlignment="Left"  TextWrapping="WrapWithOverflow" Height="50" Margin="0,0,0,0"  FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Light" FontSize="11" Foreground="#b1b1b1">
+                    All Item images in FindersKeepersD3 are property of Blizzard Entertainment Inc , Diablo III, Diablo III RoS and its respective.
+        </TextBlock>
+
+    </StackPanel>
+</UserControl>

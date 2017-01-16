@@ -1,0 +1,82 @@
+﻿<UserControl x:Class="FKUpdater.DownloadFiles"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FKUpdater"
+      mc:Ignorable="d" 
+      Height="230"
+      Width="450"
+      Background="#2d2d30">
+
+    <UserControl.Resources>
+        <local:PercentageSmallConverter x:Key="PercentageSmallConverter"/>
+        <local:PercentageConverter x:Key="PercentageConverter" />
+        <local:SizeConverter x:Key="SizeConverter" />
+        <local:ColorConverter x:Key="ColorConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel Margin="25,0,0,0">
+        <StackPanel Height="20" Orientation="Horizontal" Margin="0,0,0,5">
+            <Grid Width="400">
+                <StackPanel  HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                    <TextBlock FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="15" Foreground="#fff" HorizontalAlignment="Left">
+                            Downloading files
+                    </TextBlock>
+                </StackPanel>
+                <StackPanel  HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <TextBlock FontFamily="Segoe UI" FontSize="11" Foreground="#b3b3b3" Text="{Binding Schema.FileInfo, IsAsync=True, Converter={StaticResource SizeConverter}}"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel Height="20" HorizontalAlignment="Left">
+            <StackPanel>
+                <Border Width="400" Height="18" CornerRadius="4" >
+                    <Border.Background>
+                        <SolidColorBrush Color="#eee" Opacity="0.2" />
+                    </Border.Background>
+                    <Border Background="{Binding Schema.TotalPercentage, IsAsync=True, Converter={StaticResource ColorConverter}}" Width="{Binding Schema.TotalPercentage,  Converter={StaticResource PercentageConverter}}" HorizontalAlignment="Left" CornerRadius="4"/>
+                </Border>
+            </StackPanel>
+        </StackPanel>
+
+        <ScrollViewer Margin="0,20,0,0" Height="150" Width="415" HorizontalAlignment="Left">
+            <StackPanel HorizontalAlignment="Left" >
+
+                <ItemsControl ItemsSource="{Binding Schema.ToPerform}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel Orientation="Vertical" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Height="30">
+                                <StackPanel Width="180" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}" FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="13" Foreground="White"/>
+                                </StackPanel>
+
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="105">
+                                    <TextBlock Text="{Binding FileInfo, Converter={StaticResource SizeConverter}, IsAsync=True}" Foreground="White" TextAlignment="Right" />
+                                </StackPanel>
+
+                                <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="10,0,0,0">
+                                    <Border Width="100" Height="10" CornerRadius="4" >
+                                        <Border.Background>
+                                            <SolidColorBrush Color="#eee" Opacity="0.2" />
+                                        </Border.Background>
+                                        <Border Background="{Binding DownloadPercentage, IsAsync=True, Converter={StaticResource ColorConverter}}" Width="{Binding DownloadPercentage, IsAsync=True, Converter={StaticResource PercentageSmallConverter}}" HorizontalAlignment="Left" CornerRadius="4"/>
+                                    </Border>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
+
+        </ScrollViewer>
+    </StackPanel>
+</UserControl>

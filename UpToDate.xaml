@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="FKUpdater.UpToDate"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FKUpdater"
+      mc:Ignorable="d" 
+      Height="230"
+      Width="450"
+      Background="#2d2d30">
+
+    <UserControl.Resources>
+        <local:VersionConverter x:Key="VersionConverter" />
+    </UserControl.Resources>
+    
+    <StackPanel Margin="0,0,0,0">
+        <StackPanel Height="40">
+            <TextBlock TextAlignment="Center" FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Bold" FontSize="21" Foreground="#fff">
+                    Update done
+            </TextBlock>
+            
+            
+        </StackPanel>
+
+        <StackPanel>
+            <TextBlock Text="{Binding CurrentVersion, Converter={StaticResource VersionConverter}}" TextAlignment="Center" FontFamily="Assets/DINPro.otf#DINPro Regular" Margin="0,10,0,0" FontWeight="Bold" FontSize="19" Foreground="DodgerBlue"/>
+
+            <TextBlock TextAlignment="Center" FontFamily="Assets/DINPro.otf#DINPro Regular" FontWeight="Bold" FontSize="14" Foreground="#fff">
+                    FindersKeepersD3 is up to date.
+            </TextBlock>
+
+            <TextBlock TextAlignment="Center" FontFamily="Assets/DINPro.otf#DINPro Regular" FontWeight="Bold" FontSize="14" Foreground="#fff">
+                    Click below to launch 
+            </TextBlock>
+
+
+            <Border Width="150" Height="40" Margin="20" BorderThickness="1" HorizontalAlignment="Center" Cursor="Hand" MouseDown="StartFK">
+                <Border.ToolTip>
+                    <TextBlock Text="Continue" />
+                </Border.ToolTip>
+
+                <Border.Style>
+                    <Style TargetType="{x:Type Border}">
+                        <Setter Property="Background" Value="#155975" />
+                        <Setter Property="BorderBrush" Value="#0b1426" />
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#287a9b" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+                <TextBlock Text="Start FindersKeepers " HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" />
+            </Border>
+
+            <!---->
+        </StackPanel>
+    </StackPanel>
+</UserControl>

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="FKUpdater.VersionSelecter"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FKUpdater"
+      mc:Ignorable="d" 
+      Height="230"
+      Width="450"
+      Background="#2d2d30">
+
+    <StackPanel Margin="0,0,0,0">
+        <StackPanel Height="60">
+            <TextBlock TextAlignment="Center" FontFamily="/Assets/DINPro.otf#DINPro Regular" FontWeight="Bold" FontSize="21" Foreground="#fff">
+                    Select Operating system
+            </TextBlock>
+            <TextBlock TextAlignment="Center" FontFamily="/Assets/DINPro.otf#DINPro Regular" FontSize="11" Foreground="#b3b3b3">
+                    This should also match your Diablo III
+            </TextBlock>
+        </StackPanel>
+
+        <StackPanel x:Name="Versions"  Height="135" Orientation="Horizontal" HorizontalAlignment="Center"  >
+            <Border x:Name="Windows32Bit" Width="150" Height="100" BorderThickness="1" MouseDown="SetVersion" MouseEnter="MouseOver" MouseLeave="MouseLeave" Cursor="Hand">
+                <StackPanel HorizontalAlignment="Center" >
+                    <Image Source="/Assets/computerWhite.png" Width="40" Height="29" Margin="0,25,0,0" />
+                    <TextBlock Text="32 bit" FontFamily="Segoe UI" FontSize="21" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Width="150" x:Name="Windows64Bit" Height="100" Margin="20,0,0,0" Background="#155975" MouseEnter="MouseOver" MouseLeave="MouseLeave" BorderBrush="#0b1426" BorderThickness="1" MouseDown="SetVersion" Cursor="Hand">
+                <StackPanel HorizontalAlignment="Center" >
+                    <Image Source="/Assets/computerWhite.png" Width="40" Height="29" Margin="0,25,0,0" />
+                    <TextBlock Text="64 bit" FontFamily="Segoe UI" FontSize="21" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+                </StackPanel>
+            </Border>
+
+        </StackPanel>
+    
+
+    </StackPanel>
+</UserControl>
